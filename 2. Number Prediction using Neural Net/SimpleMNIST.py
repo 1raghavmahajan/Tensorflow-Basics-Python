@@ -28,7 +28,7 @@ cross_entropy = tf.reduce_mean(
                 tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
 
 # each training step in gradient decent we want to minimize cross entropy
-train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+train_step = tf.train.GradientDescentOptimizer(0.6).minimize(cross_entropy)
 
 # initialize the global variables
 init = tf.global_variables_initializer()
@@ -41,8 +41,8 @@ sess = tf.Session()
 sess.run(init)
 
 # Perform 1000 training steps
-for i in range(1000):
-    batch_xs, batch_ys = mnist.train.next_batch(100)    # get 100 random data points from the data. batch_xs = image, 
+for i in range(2200):
+    batch_xs, batch_ys = mnist.train.next_batch(25)    # get 100 random data points from the data. batch_xs = image, 
                                                         # batch_ys = digit(0-9) class
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys}) # do the optimization with this data
 
